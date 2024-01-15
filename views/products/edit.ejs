@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit</title>
+</head>
+
+<body>
+    <h1>Edit the frut <%= result[0].name %>
+    </h1>
+    <form action="/products<%= result[0].id  %>" method="POST">
+        <section>
+            <label for="fruitName"><b>Name of Fruit</b></label> <br>
+            <input type="text" name="name" id="fruitName" placeholder="Name of fruit" value="<%= result[0].name %>">
+        </section>
+        <br>
+        <section>
+            <label for="quantity"><b>Quantity</b></label> <br>
+            <input type="number" placeholder="Number of fruit" name="quantity" id="quantity"
+                value="<%= result[0].quantity %>">
+        </section>
+
+        <br>
+        <button type="submit">Submit</button>
+    </form>
+</body>
+
+</html>

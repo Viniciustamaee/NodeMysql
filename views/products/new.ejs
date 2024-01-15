@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New product</title>
+</head>
+
+<body>
+    <h1>Insert a new Product</h1>
+    <form action="/products" method="POST">
+        <section>
+            <label for="fruitName"><b>Name of Fruit</b></label> <br>
+            <input type="text" name="name" id="fruitName" placeholder="Name of fruit">
+        </section>
+        <br>
+        <section>
+            <label for="quantity"><b>Quantity</b></label> <br>
+            <input type="number" placeholder="Number of fruit" name="quantity" id="quantity">
+        </section>
+
+        <br>
+        <button type="submit">Submit</button>
+    </form>
+
+    <a href="/product">Back to all product</a>
+</body>
+
+</html>
