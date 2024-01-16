@@ -23,7 +23,15 @@
         </b>
     </p>
 
-    <a href="/product">All the product</a>
+
+
+    <a href="/product">All the product</a> <br>
+    <a href="/product/<%= result[0].id %>/edit">Edit the product</a>
+
+
+    <form action="/products/<%= result[0].id %>?_method=DELETE" method="POST">
+        <button>Delete</button>
+    </form>
 </body>
 
 </html>

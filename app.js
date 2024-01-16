@@ -2,13 +2,13 @@ const express = require('express');
 const app = express();
 const port = 3000;
 const con = require('./database/db');
-const methodOverride = require('method-override')
+const methodOverride = require('method-override');
+
 
 app.use(methodOverride('_method'))
-
-app.set('view engine', 'ejs')
 app.use(express.urlencoded({ extended: true }));
 
+app.set('view engine', 'ejs')
 
 app.get('/product/new', (req, res) => {
     res.render('products/new')
@@ -38,7 +38,6 @@ app.post('/products', (req, res) => {
     });
 });
 
-
 app.get('/product', (req, res) => {
     const sql = "SELECT * FROM frut";
     con.query(sql, (err, results) => {
@@ -58,6 +57,35 @@ app.get('/product/:id', (req, res) => {
         console.log(result);
         res.render('products/show', { result })
     });
+})
+
+app.put('/products/:id', async (req, res) => {
+    const { id } = req.params;
+    const { name, quantity } = req.body
+    const sql = `UPDATE frut SET name = '${name}', quantity = '${quantity}' WHERE id = '${id}'`;
+    con.query(sql, (error, results, fields) => {
+        if (error) {
+            return res.status(500).json({ error: 'Erro ao atualizar o produto no banco de dados.' });
+        }
+        console.log('Produto atualizado com sucesso:', results);
+        res.redirect('/product')
+    });
+
+});
+
+app.delete('/products/:id', (req, res) => {
+    const { id } = req.params;
+    let sql = `DELETE FROM frut WHERE id = ${id}`;
+
+    con.query(sql, (error, results, fields) => {
+        if (error) {
+            console.error(error);
+            res.status(500).send('Erro interno no servidor');
+            return;
+        }
+        res.redirect('/product')
+
+    })
 })
 
 app.listen(port, () => {

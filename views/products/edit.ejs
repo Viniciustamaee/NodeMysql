@@ -10,7 +10,7 @@
 <body>
     <h1>Edit the frut <%= result[0].name %>
     </h1>
-    <form action="/products<%= result[0].id  %>" method="POST">
+    <form action="/products/<%= result[0].id  %>?_method=PUT" method="POST">
         <section>
             <label for="fruitName"><b>Name of Fruit</b></label> <br>
             <input type="text" name="name" id="fruitName" placeholder="Name of fruit" value="<%= result[0].name %>">
@@ -25,6 +25,8 @@
         <br>
         <button type="submit">Submit</button>
     </form>
+    <a href="/product">All the product</a> <br>
+    <a href="/product/<%= result[0].id %>">Back to the product</a>
 </body>
 
 </html>
