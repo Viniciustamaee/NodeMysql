@@ -1,4 +1,4 @@
-const con = require('./db/db')
+const con = require('./db')
 
 
 con.connect(function (err) {

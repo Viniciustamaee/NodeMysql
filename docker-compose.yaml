@@ -14,7 +14,7 @@ services:
   mysql:
     image: mysql:latest
     ports:
-      - "3307:3307"
+      - "3307:3306"
     volumes:
       - mysqlBanco:/var/lib/mysql
     environment:

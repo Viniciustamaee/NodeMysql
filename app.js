@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const port = 3000;
+const port = process.env.PORT;
 const con = require('./database/db');
 const methodOverride = require('method-override');
 
@@ -31,10 +31,9 @@ app.post('/products', (req, res) => {
     con.query(sql, values, (err, results) => {
         if (err) {
             console.error('Erro ao inserir produto no MySQL:', err);
-            res.status(500).send('Erro interno do servidor');
-        } else {
-            res.redirect('/product')
+            return res.status(500).send('Erro interno do servidor');
         }
+        res.redirect('/product')
     });
 });
 
@@ -84,11 +83,10 @@ app.delete('/products/:id', (req, res) => {
             return;
         }
         res.redirect('/product')
-
     })
-})
+});
 
 app.listen(port, () => {
-    console.log(`A porta está funcionando ${port}`);
+    console.log('A porta está funcionando');
 });
 
